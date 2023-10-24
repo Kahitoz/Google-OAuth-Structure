@@ -31,6 +31,6 @@ class GWTView(APIView):
 
     def blacklist_jwt(self, access_token):
         mongo_client = pymongo.MongoClient(
-            "mongodb+srv://kahitoz:86goMFAJDSOjGJvr@cluster0.pp8efut.mongodb.net/?retryWrites=true&w=majority")
+            "MONGO-URI")
         logged_jwt_collection = mongo_client["loggedJWT"]
         logged_jwt_collection.insert_one({"token": access_token})
