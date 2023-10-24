@@ -1,7 +1,9 @@
     import { useEffect, useState } from "react";
     import { useNavigate } from "react-router-dom";
+    import Cookies from "js-cookies"
     const GoogleOAuth = () => {
     const [gwt, setgwt] = useState("");
+    const [counter, setcounter] = useState(0)
     function handleCallbackResponse(response) {
         try {
         if (response.error) {
@@ -11,7 +13,7 @@
         } catch (error) {}
     }
     console.log(gwt)
-
+    Cookies.setItem("Access_token", gwt)
     const client_id = process.env.REACT_APP_CLIENT_ID;
     useEffect(() => {
         /* global google */
@@ -29,9 +31,10 @@
     const now_navigate = () =>{
         navigate('/user/profile')
     }
+    
     useEffect(()=>{
         if(gwt){
-            now_navigate()
+            now_navigate()     
         }
     })
     return (
